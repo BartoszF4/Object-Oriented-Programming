@@ -6,8 +6,8 @@ This repository contains assignments and projects developed during the 3rd-semes
 
 ### 📁 [Lab 01 - Dynamic Stack (C)](./Lab-01-Dynamic-Stack-C)
 Although the course focuses on C++, the introductory assignment serves as a rigorous recap of C memory management. 
-* **Implementation (`Stack.c`, `Stack.h`)**: A dynamically allocating integer stack[cite: 69, 71]. The stack intelligently scales its capacity using `malloc` and `realloc` with a predefined growth factor rather than expanding cell-by-cell[cite: 69].
-* **Testing Suite (`TestStack.c`)**: A comprehensive, custom test suite verifying LIFO behavior, proper capacity scaling (`testCapacityGrowsWhenStackIsFull`), extreme value preservation, and safe failure handling when memory allocation bounds are exceeded (`testPushFailsSafelyWhenCapacityCannotGrow`)[cite: 75].
+* **Implementation (`Stack.c`, `Stack.h`)**: A dynamically allocating integer stack. The stack intelligently scales its capacity using `malloc` and `realloc` with a predefined growth factor rather than expanding cell-by-cell.
+* **Testing Suite (`TestStack.c`)**: A comprehensive, custom test suite verifying LIFO behavior, proper capacity scaling (`testCapacityGrowsWhenStackIsFull`), extreme value preservation, and safe failure handling when memory allocation bounds are exceeded (`testPushFailsSafelyWhenCapacityCannotGrow`).
 * **Memory Safety**: Designed to be entirely leak-free, verified using `valgrind`.
 
 #### Compilation
