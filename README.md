@@ -23,11 +23,18 @@ This module introduces the "Rule of Three" (Destructor, Copy Constructor, Copy A
 * **Advanced Test Suite (`TestStack.cpp`)**: Comprehensive tests for edge cases: assigning larger to smaller stacks, smaller to larger, handling empty stacks, and verifying self-assignment immunity.
 * **GDB Debugging (`DebugDemo.cpp`)**: Analyzes the implicit invocation of copy constructors and assignment operators when passing objects by value versus by reference.
 
+### 📁 [Lab 04 - Complex Numbers & Operator Overloading](./Lab-04-Complex-Numbers)
+This module explores C++ operator overloading and constant correctness by implementing a mathematical `Complex` number class from scratch.
+* **Mathematical Operations**: Implements compound assignment operators (`+=`, `-=`, `*=`, `/=`) as member functions, and standard binary arithmetic operations (`+`, `-`, `*`, `/`) as non-member functions to support symmetric operations (e.g., `a + 7.2` and `7.2 + a`).
+* **Stream & Comparison Overloads**: Custom global overloads for the stream insertion operator (`<<`) and equality/inequality operators (`==`, `!=`).
+* **Polar Coordinates**: Includes member functions to calculate and return the amplitude (magnitude) and phase (angle in radians) using the standard `<cmath>` library.
+* **Strict Unit Testing (`TestComplex.cpp`)**: Features an exhaustive custom testing suite. It verifies standard arithmetic, constant object interoperability, floating-point precision equivalence, self-assignment, and complex chained mutations such as `(a += b) += c` versus `a += b += c`.
+
 ---
 
 ## Compilation & Execution
-You can compile the Lab projects using standard GNU compilers with strict warning flags. For example, to compile Lab 03:
+You can compile the Lab projects using standard GNU compilers with strict warning flags. For example, to compile Lab 04:
 
 ```bash
-g++ -g -Wall -pedantic Stack.cpp TestStack.cpp -o stack_copy_semantics
-./stack_copy_semantics
+g++ -g -Wall -pedantic Complex.cpp TestComplex.cpp -o complex_test
+./complex_test
