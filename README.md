@@ -30,6 +30,15 @@ This module explores C++ operator overloading and constant correctness by implem
 * **Polar Coordinates**: Includes member functions to calculate and return the amplitude (magnitude) and phase (angle in radians) using the standard `<cmath>` library.
 * **Strict Unit Testing (`TestComplex.cpp`)**: Features an exhaustive custom testing suite. It verifies standard arithmetic, constant object interoperability, floating-point precision equivalence, self-assignment, and complex chained mutations such as `(a += b) += c` versus `a += b += c`.
 
+### 📁 [Lab 05 - Polynomial & Sparse Storage](./Lab-05-Polynomial)
+This module builds on operator overloading from Lab 04 and applies it to a `Poly` class representing a polynomial, designed to work with a given test program.
+* **Sparse Storage (`Poly.cpp`, `Poly.h`)**: Only non-zero coefficients are kept, in a `std::map<unsigned, double>` keyed by exponent. A polynomial like `x^1000 + 6x^350 + 15` occupies 3 entries instead of 1001. Setting a coefficient to zero erases its entry, so results such as `p1 - p1` collapse to an empty polynomial.
+* **Element Access via Proxy**: `p[i] = value` and `double c = p[i]` both work on a non-const polynomial. A nested `CoefficientProxy` class distinguishes reads from writes, so a missing coefficient reads as `0` without being inserted into the map. A separate `const` overload of `operator[]` supports const objects.
+* **Arithmetic Operators**: Compound assignment (`+=`, `-=`, `*=`) as member functions, and binary `+`, `-`, `*` as non-member functions. A non-explicit `Poly(double)` constructor enables mixed expressions such as `p1 + 2.4` and `5.3 - p1`. Self-subtraction (`p -= p`) is handled safely.
+* **Evaluation & Output**: `operator()(double x)` evaluates the polynomial at a point. The stream insertion operator prints terms from the highest exponent down, with correct signs and without redundant parts (`x` instead of `1x^1`, no `0x^2`), and prints `0` for the zero polynomial.
+* **Pass-by-Value Safety**: Because the class holds only a `std::map`, the compiler-generated copy constructor, copy assignment and destructor perform correct deep copies (Rule of Zero), so passing a `Poly` by value is safe. The binary operators rely on this by taking their left operand by value.
+* **Testing (`TestPoly.cpp`)**: Provided test program covering coefficient access on const and non-const objects, addition, subtraction, multiplication with scalars and polynomials, and evaluation at a point. Verified with `valgrind` (no leaks).
+
 ---
 
 ## Compilation & Execution
@@ -38,3 +47,4 @@ You can compile the Lab projects using standard GNU compilers with strict warnin
 ```bash
 g++ -g -Wall -pedantic Complex.cpp TestComplex.cpp -o complex_test
 ./complex_test
+```
